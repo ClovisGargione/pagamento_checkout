@@ -1,0 +1,21 @@
+server:
+  port: 10000
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+      - id: pagamentos
+        uri: http://localhost:8080
+        predicates:
+        - Path=/rest/pagamentos/**
+      - id: chackout
+        uri: http://localhost:3000
+        predicates:
+        - Path=/rest/checkout/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
